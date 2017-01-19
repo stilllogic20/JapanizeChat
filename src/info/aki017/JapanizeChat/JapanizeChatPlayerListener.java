@@ -24,7 +24,7 @@ public class JapanizeChatPlayerListener implements Listener {
   public void onPlayerChat(PlayerChatEvent event) {
     if (event.getMessage().startsWith("/")) return;
     if (plugin.getConfigHandler().getJapanizeMode(event.getPlayer().getName()).equals("On")) {
-      //plugin.log.info(event.getMessage());
+      //plugin.logger.info(event.getMessage());
       Matcher matcher = pattern.matcher(event.getMessage());
       if (!matcher.find(0)) {
 

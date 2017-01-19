@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 public class JapanizeChat extends JavaPlugin {
-  public static final Logger log = Bukkit.getLogger();
+  public static final Logger logger = Bukkit.getLogger();
   private ConfigHandler configHandler;
 
   public void onDisable() {
-    log.info("JapanizeChat Disabled");
+    logger.info("JapanizeChat Disabled");
 
   }
 
@@ -29,7 +29,7 @@ public class JapanizeChat extends JavaPlugin {
     getCommand("japanize").setExecutor(new JapanizeChatCommand(this));
 
     // Print that the plugin has been enabled!
-    log.info("JapanizeChat version " + getDescription().getVersion() + " is enabled!");
+    logger.info("JapanizeChat version " + getDescription().getVersion() + " is enabled!");
 
   }
 
