@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.logging.Logger;
 
 public class JapanizeChat extends JavaPlugin {
@@ -21,8 +23,8 @@ public class JapanizeChat extends JavaPlugin {
 
     try {
       loadConfig();
-    } catch (IOException excepted) {
-
+    } catch (IOException exception) {
+      crash(exception);
     }
 
     // Register commands
@@ -33,15 +35,35 @@ public class JapanizeChat extends JavaPlugin {
 
   }
 
+  /**
+   * Crash and shutdown this plugin.
+   *
+   * @param cause Crash reason
+   */
+  public void crash(Exception cause) {
+    logger.severe("Plugin has crashed (Caused by: " + cause.toString() + ")");
+
+    // Print the stacktrace message to memory
+    StringWriter messageBuffer = new StringWriter();
+    PrintWriter bufferWrapper = new PrintWriter(messageBuffer);
+    cause.printStackTrace(bufferWrapper);
+    bufferWrapper.close();
+
+    // Log the stacktrace to logger
+    String detail = messageBuffer.toString();
+    logger.severe("Details: " + detail);
+
+    // Shutdown this plugin
+    Bukkit.getPluginManager().disablePlugin(this);
+  }
+
   public void loadConfig() throws IOException {
     File configFile = new File(getDataFolder(), "config.yml");
-
     try {
       configFile.createNewFile();
-    } catch (IOException exception) {
-      throw exception;
+    } catch (IOException e) {
+      throw new IOException("An exception was thrown while loading configuration file.", e);
     }
-
     configHandler = new ConfigHandler(configFile);
   }
 
