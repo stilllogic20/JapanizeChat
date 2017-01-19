@@ -1,172 +1,181 @@
 package biscotte.kana;
 
 /**
- * @author      WATANABE Mamoru
- * @version     Version 0.0  19 Feb.2000
- * @param       NONE
- * @return      NONE
- * @exception   NONE
- * @see         NONE
+ * @param NONE
+ * @author WATANABE Mamoru
+ * @version Version 0.0  19 Feb.2000
+ * @return NONE
+ * @exception NONE
+ * @see NONE
  **/
-public class Kana
-{
-    private String  srcLine;
-    private String  cnvLine;
+public class Kana {
+  private String srcLine;
+  private String cnvLine;
 
-/**
- * @author      WATANABE Mamoru
- * @version     Version 0.0  19 Feb.2000
- * @param       NONEaa
- * @return      NONE
- * @exception   NONE
- * @see         NONE
- **/
-    public Kana() {
-        srcLine = "";
+  /**
+   * @param NONEaa
+   * @return NONE
+   * @throws NONE
+   * @author WATANABE Mamoru
+   * @version Version 0.0  19 Feb.2000
+   * @see NONE
+   **/
+  public Kana() {
+    srcLine = "";
+  }
+
+  /**
+   * @param String x : ï¿½ÏŠï¿½ï¿½Oï¿½Ìƒï¿½ï¿½[ï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+   * @return NONE
+   * @throws NONE
+   * @author WATANABE Mamoru
+   * @version Version 0.0  19 Feb.2000
+   * @see NONE
+   **/
+  public void setLine(String s) {
+    srcLine = s; //s.toLowerCase();
+  }
+
+  /**
+   * @param NONE
+   * @return String : ï¿½ÏŠï¿½ï¿½ï¿½Ì‚ï¿½ï¿½È•ï¿½ï¿½ï¿½ï¿½ï¿½
+   * @throws NONE
+   * @author WATANABE Mamoru
+   * @version Version 0.0  19 Feb.2000
+   * @see NONE
+   **/
+  public String getLine() {
+    return cnvLine;
+  }
+
+  private String[][] r2kTable = {
+    {"", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 0.
+    {"k", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 1.
+    {"s", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 2.
+    {"t", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 3.
+    {"n", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 4.
+    {"h", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 5.
+    {"m", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 6.
+    {"y", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½"},           // 7.
+    {"r", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             // 8.
+    {"w", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½"},         // 9.
+
+    {"g", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //10.
+    {"z", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //11.
+    {"j", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},     //12.
+    {"d", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //13.
+    {"b", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //14.
+    {"p", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //15.
+    {"gy", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},   //16.
+    {"zy", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},   //17.
+    {"jy", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},   //18.
+    {"dy", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},   //19.
+    {"by", "ï¿½Ñ‚ï¿½", "ï¿½Ñ‚ï¿½", "ï¿½Ñ‚ï¿½", "ï¿½Ñ‚ï¿½", "ï¿½Ñ‚ï¿½"},   //20.
+    {"py", "ï¿½Ò‚ï¿½", "ï¿½Ò‚ï¿½", "ï¿½Ò‚ï¿½", "ï¿½Ò‚ï¿½", "ï¿½Ò‚ï¿½"},   //21.
+
+    {"l", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //22.
+    {"v", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},     //23.
+    {"sh", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},     //24.
+    {"sy", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},     //25.
+    {"ch", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},     //26.
+    {"cy", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},     //27.
+
+    {"f", "ï¿½Ó‚ï¿½", "ï¿½Ó‚ï¿½", "ï¿½ï¿½", "ï¿½Ó‚ï¿½", "ï¿½Ó‚ï¿½"},     //28.
+    {"q", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},     //29.
+    {"ky", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},   //30.
+    {"ty", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½"},   //31.
+    {"ny", "ï¿½É‚ï¿½", "ï¿½É‚ï¿½", "ï¿½É‚ï¿½", "ï¿½É‚ï¿½", "ï¿½É‚ï¿½"},   //32.
+    {"hy", "ï¿½Ð‚ï¿½", "ï¿½Ð‚ï¿½", "ï¿½Ð‚ï¿½", "ï¿½Ð‚ï¿½", "ï¿½Ð‚ï¿½"},   //33.
+    {"my", "ï¿½Ý‚ï¿½", "ï¿½Ý‚ï¿½", "ï¿½Ý‚ï¿½", "ï¿½Ý‚ï¿½", "ï¿½Ý‚ï¿½"},   //34.
+    {"ry", "ï¿½ï¿½ï¿½", "ï¿½è‚¡", "ï¿½ï¿½ï¿½", "ï¿½è‚¥", "ï¿½ï¿½ï¿½"},   //35.
+    {"ly", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //36.
+    {"lt", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //37.
+    {"xy", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //38.
+    {"xt", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //39.
+    {"x", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"},             //40.
+  };
+
+  /**
+   * @param String s : ï¿½qï¿½ï¿½ï¿½ÌŽï¿½ï¿½
+   * @param int    n : ï¿½ê‰¹ï¿½ÌŽï¿½ï¿½
+   * @return String : ï¿½ÏŠï¿½ï¿½ï¿½Ì‚ï¿½ï¿½È•ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ê‰¹ï¿½ï¿½)
+   * @throws NONE
+   * @author WATANABE Mamoru
+   * @version Version 0.0  19 Feb.2000
+   * @see NONE
+   **/
+  private String R2K(String s, int n) {
+
+    if (n < 5) {
+      for (int i = 0; i < 41; i++) {
+        if (s.equals(r2kTable[i][0])) {
+          return r2kTable[i][n + 1];
+        }
+      }
+      return s + r2kTable[0][n + 1];
+    } else if (n == 5) {
+      return "ï¿½ï¿½";
+    } else {
+      return "ï¿½ï¿½";
     }
+  }
 
-/**
- * @author      WATANABE Mamoru
- * @version     Version 0.0  19 Feb.2000
- * @param       String x : •ÏŠ·‘O‚Ìƒ[ƒ}Žš•¶Žš—ñ
- * @return      NONE
- * @exception   NONE
- * @see         NONE
- **/
-    public void setLine(String s) {
-        srcLine = s; //s.toLowerCase();
-    }
+  /**
+   * @param NONE
+   * @return NONE
+   * @throws NONE
+   * @author WATANABE Mamoru
+   * @version Version 0.0  19 Feb.2000
+   * @see NONE
+   **/
+  public void convert() {
+    String buf;
+    String tmp;
 
-/**
- * @author      WATANABE Mamoru
- * @version     Version 0.0  19 Feb.2000
- * @param       NONE
- * @return      String : •ÏŠ·Œã‚Ì‚©‚È•¶Žš—ñ
- * @exception   NONE
- * @see         NONE
- **/
-    public String getLine() {
-        return cnvLine;
-    }
+    cnvLine = "";
+    buf = "";
+    for (int i = 0; i < srcLine.length(); i++) {
+      tmp = srcLine.substring(i, i + 1);
 
-    private String[][] r2kTable = {
-        {   "", "‚ ","‚¢","‚¤","‚¦","‚¨" },             // 0.
-        {  "k", "‚©","‚«","‚­","‚¯","‚±" },             // 1.
-        {  "s", "‚³","‚µ","‚·","‚¹","‚»" },             // 2.
-        {  "t", "‚½","‚¿","‚Â","‚Ä","‚Æ" },             // 3.
-        {  "n", "‚È","‚É","‚Ê","‚Ë","‚Ì" },             // 4.
-        {  "h", "‚Í","‚Ð","‚Ó","‚Ö","‚Ù" },             // 5.
-        {  "m", "‚Ü","‚Ý","‚Þ","‚ß","‚à" },             // 6.
-        {  "y", "‚â","‚¢","‚ä","‚¢‚¥","‚æ" },           // 7.
-        {  "r", "‚ç","‚è","‚é","‚ê","‚ë" },             // 8.
-        {  "w", "‚í","‚¤‚¡","‚¤","‚¤‚¥","‚ð" },         // 9.
+      if (tmp.equals("a")) {
+        cnvLine = cnvLine + R2K(buf, 0);
+        buf = "";
+      } else if (tmp.equals("i")) {
+        cnvLine = cnvLine + R2K(buf, 1);
+        buf = "";
+      } else if (tmp.equals("u")) {
+        cnvLine = cnvLine + R2K(buf, 2);
+        buf = "";
+      } else if (tmp.equals("e")) {
+        cnvLine = cnvLine + R2K(buf, 3);
+        buf = "";
+      } else if (tmp.equals("o")) {
+        cnvLine = cnvLine + R2K(buf, 4);
+        buf = "";
+      } else {
+        if (buf.equals("n")) {
+          if (!(tmp.equals("y"))) {         /* "ny" */
+            cnvLine = cnvLine + R2K(buf, 5);
+            buf = "";
+            if (tmp.equals("n")) continue; /* "nn" */
+          }
+        }
 
-        {  "g", "‚ª","‚¬","‚®","‚°","‚²" },             //10.
-        {  "z", "‚´","‚¶","‚¸","‚º","‚¼" },             //11.
-        {  "j", "‚¶‚á","‚¶","‚¶‚ã","‚¶‚¥","‚¶‚å" },     //12.
-        {  "d", "‚¾","‚À","‚Ã","‚Å","‚Ç" },             //13.
-        {  "b", "‚Î","‚Ñ","‚Ô","‚×","‚Ú" },             //14.
-        {  "p", "‚Ï","‚Ò","‚Õ","‚Ø","‚Û" },             //15.
-        { "gy", "‚¬‚á","‚¬‚¡","‚¬‚ã","‚¬‚¥","‚¬‚å" },   //16.
-        { "zy", "‚¶‚á","‚¶‚¡","‚¶‚ã","‚¶‚¥","‚¶‚å" },   //17.
-        { "jy", "‚¶‚á","‚¶‚¡","‚¶‚ã","‚¶‚¥","‚¶‚å" },   //18.
-        { "dy", "‚À‚á","‚À‚¡","‚À‚ã","‚À‚¥","‚À‚å" },   //19.
-        { "by", "‚Ñ‚á","‚Ñ‚¡","‚Ñ‚ã","‚Ñ‚¥","‚Ñ‚å" },   //20.
-        { "py", "‚Ò‚á","‚Ò‚¡","‚Ò‚ã","‚Ò‚¥","‚Ò‚å" },   //21.
-
-        {  "l", "‚Ÿ","‚¡","‚£","‚¥","‚§" },             //22.
-        {  "v", "ƒ”‚Ÿ","ƒ”‚¡","ƒ”","ƒ”‚¥","ƒ”‚§" },     //23.
-        { "sh", "‚µ‚á","‚µ","‚µ‚ã","‚µ‚¥","‚µ‚å" },     //24.
-        { "sy", "‚µ‚á","‚µ","‚µ‚ã","‚µ‚¥","‚µ‚å" },     //25.
-        { "ch", "‚¿‚á","‚¿","‚¿‚ã","‚¿‚¥","‚¿‚å" },     //26.
-        { "cy", "‚¿‚á","‚¿","‚¿‚ã","‚¿‚¥","‚¿‚å" },     //27.
-
-        {  "f", "‚Ó‚Ÿ","‚Ó‚¡","‚Ó","‚Ó‚¥","‚Ó‚§" },     //28.
-        {  "q", "‚­‚Ÿ","‚­‚¡","‚­","‚­‚¥","‚­‚§" },     //29.
-        { "ky", "‚«‚á","‚«‚¡","‚«‚ã","‚«‚¥","‚«‚å" },   //30.
-        { "ty", "‚¿‚á","‚¿‚¡","‚¿‚ã","‚¿‚¥","‚¿‚å" },   //31.
-        { "ny", "‚É‚á","‚É‚¡","‚É‚ã","‚É‚¥","‚É‚å" },   //32.
-        { "hy", "‚Ð‚á","‚Ð‚¡","‚Ð‚ã","‚Ð‚¥","‚Ð‚å" },   //33.
-        { "my", "‚Ý‚á","‚Ý‚¡","‚Ý‚ã","‚Ý‚¥","‚Ý‚å" },   //34.
-        { "ry", "‚è‚á","‚è‚¡","‚è‚ã","‚è‚¥","‚è‚å" },   //35.
-        { "ly", "‚á","‚¡","‚ã","‚¥","‚å" },             //36.
-        { "lt", "‚½","‚¿","‚Á","‚Ä","‚Æ" },             //37.
-        { "xy", "‚á","‚¡","‚ã","‚¥","‚å" },             //38.
-        { "xt", "‚½","‚¿","‚Á","‚Ä","‚Æ" },             //39.
-        {  "x", "‚Ÿ","‚¡","‚£","‚¥","‚§" },             //40.
-    };
-
-/**
- * @author      WATANABE Mamoru
- * @version     Version 0.0  19 Feb.2000
- * @param       String s : Žq‰¹‚ÌŽí—Þ
- * @param       int    n : •ê‰¹‚ÌŽí—Þ
- * @return      String : •ÏŠ·Œã‚Ì‚©‚È•¶Žš—ñ(ˆê‰¹•ª)
- * @exception   NONE
- * @see         NONE
- **/
-    private String R2K(String s, int n) {
-
-        if ( n<5 ) {
-            for ( int i=0; i<41; i++ ) {
-                if ( s.equals(r2kTable[i][0]) ) {
-                    return r2kTable[i][n+1];
-                }
-            }
-            return s+r2kTable[0][n+1];
-        } else if (n==5) {
-            return "‚ñ";
+        if (java.lang.Character.isLetter(tmp.charAt(0))) {
+          if (buf.equals(tmp)) {
+            cnvLine = cnvLine + R2K(buf, 6);     /* "ï¿½ï¿½" */
+            buf = tmp;
+          } else {
+            buf = buf + tmp;
+          }
         } else {
-            return "‚Á";
+          cnvLine = cnvLine + buf + tmp;
+          buf = "";
         }
+      }
+
+      //  System.out.println("buf,tmp:"+buf+","+tmp+","+cnvLine);
     }
-
-/**
- * @author      WATANABE Mamoru
- * @version     Version 0.0  19 Feb.2000
- * @param       NONE
- * @return      NONE
- * @exception   NONE
- * @see         NONE
- **/
-    public void convert() {
-        String   buf;
-        String   tmp;
-
-        cnvLine = "";
-        buf     = "";
-        for ( int i=0; i<srcLine.length(); i++ ) {
-            tmp = srcLine.substring(i,i+1);
-
-            if      ( tmp.equals("a") ) { cnvLine=cnvLine+R2K(buf,0); buf = ""; }
-            else if ( tmp.equals("i") ) { cnvLine=cnvLine+R2K(buf,1); buf = ""; }
-            else if ( tmp.equals("u") ) { cnvLine=cnvLine+R2K(buf,2); buf = ""; }
-            else if ( tmp.equals("e") ) { cnvLine=cnvLine+R2K(buf,3); buf = ""; }
-            else if ( tmp.equals("o") ) { cnvLine=cnvLine+R2K(buf,4); buf = ""; }
-            else {
-                if ( buf.equals("n") ) {
-                    if ( !(tmp.equals("y")) ) {         /* "ny" */
-                        cnvLine=cnvLine+R2K(buf,5);
-                        buf="";
-                        if ( tmp.equals("n") ) continue; /* "nn" */
-                    }
-                }
-
-                if ( java.lang.Character.isLetter(tmp.charAt(0)) ) {
-                    if ( buf.equals(tmp) ) {
-                        cnvLine=cnvLine+R2K(buf,6);     /* "‚Á" */
-                        buf=tmp;
-                    } else {
-                        buf=buf+tmp;
-                    }
-                } else {
-                    cnvLine=cnvLine+buf+tmp;
-                    buf="";
-                }
-            }
-
-        //  System.out.println("buf,tmp:"+buf+","+tmp+","+cnvLine);
-        }
-        cnvLine=cnvLine+buf;
-    }
+    cnvLine = cnvLine + buf;
+  }
 }
